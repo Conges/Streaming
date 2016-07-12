@@ -37,7 +37,9 @@ def new_connection(x):
 
     print ("Enter number of files:")
     nmr_files = int(sys.stdin.readline().rstrip())
-
+    if(nmr_files < 1 ):
+        print("Cannot send less than one file")
+        return
     message = dst_ip + " , " + str(nmr_files)
     sendMessage(src_ip, SERVICE_PORT, message, x)
 
@@ -46,13 +48,16 @@ class MessageSender(protocol.Protocol):
     def __init__(self, message, x):
         print("in message sender inintalizdrs")
         self.message = message
-        print(x)
+        # print(x)
         self.x = x
 
     def connectionMade(self):
         # send the message
         print("in message conncetion made")
         self.transport.write(self.message)
+
+    def dataReceived(self, send_time):
+        print("--- Received send_time =  %s---" % send_time)
         # close the connection
         self.transport.loseConnection()
 
