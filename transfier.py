@@ -18,7 +18,7 @@ class StreamSender:
     def __init__(self):
         # self.globallock = Lock()
         self.strart_num = 459
-        self.dst_ip = "192.168.1.4"
+        self.dst_ip = ""
         self.dst_user = "ubuntu"
         self.dst_path = "ftp_files/"
         self.src_path = ""
